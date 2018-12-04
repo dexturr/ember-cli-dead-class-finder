@@ -7,7 +7,7 @@ const listSelectors = require('list-selectors');
 const bodyParser = require('body-parser').json({ limit: '50mb' });
 const difference = require('lodash.difference');
 const some = require('lodash.some');
-const WRITE_COVERAGE = '/write-css-coverage';
+const WRITE_COVERAGE = '/write-class-coverage';
 
 let list;
 
@@ -77,7 +77,7 @@ module.exports = {
       var REQUEST_ASYNC = !/PhantomJS/.test(window.navigator.userAgent);
       function sendCoverage(callback) {
         var request = new XMLHttpRequest();
-        request.open('POST', '/write-css-coverage', REQUEST_ASYNC);
+        request.open('POST', '/write-class-coverage', REQUEST_ASYNC);
         request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         request.send(JSON.stringify(window.__class_coverage__));
         if (REQUEST_ASYNC) {
@@ -144,7 +144,7 @@ module.exports = {
     const filteredClassesWithNoStyles = classesWithNoStyles.filter(filterClasses);
     const filteredStylesThatDoNotAppear = stylesThatDoNotAppear.filter(filterClasses);
     fs.writeFileSync(
-      path.join(this.project.root, 'css-coverage', 'report.json'),
+      path.join(this.project.root, 'class-coverage', 'report.json'),
       JSON.stringify({
         classesWithNoStyles: filteredClassesWithNoStyles,
         unusedStyledClasses: filteredStylesThatDoNotAppear,
@@ -157,7 +157,7 @@ module.exports = {
   },
 
   _isEnabled() {
-    let value = process.env.CSS_COVERAGE && process.env.CSS_COVERAGE.toLowerCase();
+    let value = process.env.FIND_DEAD_CLASSES && process.env.FIND_DEAD_CLASSES.toLowerCase();
     return ['true', true].includes(value);
   },
 
