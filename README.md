@@ -1,4 +1,4 @@
-ember-cli-dead-css-finder
+ember-cli-dead-class-finder
 ==============================================================================
 
 [Short description of the addon.]
@@ -7,7 +7,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-cli-dead-css-finder
+ember install ember-cli-dead-class-finder
 ```
 
 
@@ -23,7 +23,7 @@ Contributing
 ### Installation
 
 * `git clone <repository-url>`
-* `cd ember-cli-dead-css-finder`
+* `cd ember-cli-dead-class-finder`
 * `npm install`
 
 ### Linting
