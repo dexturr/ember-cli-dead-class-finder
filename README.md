@@ -36,10 +36,11 @@ module('Acceptance | Acceptance test', function(hooks) {
 });
 ```
 
-Changing every single acceptance & integration test file is really annoying [using this pattern for both acceptance and integration tests can help avoid this in the future](https://github.com/dexturr/acceptance-test-blueprint).
+## Codemod
 
-## Coming soon: codemod
+This is long and boring so there is a [codemod here](https://github.com/dexturr/dead-class-finder-codemod) which you can use to do this for you.
 
+Changing every single acceptance & integration test file is really annoying in these situations [using this pattern for both acceptance and integration tests can help avoid this in the future](https://github.com/dexturr/acceptance-test-blueprint), or you can just run the codemod. Your choice.
 
 Usage
 ------------------------------------------------------------------------------
