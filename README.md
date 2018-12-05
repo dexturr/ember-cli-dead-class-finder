@@ -1,7 +1,7 @@
 ember-cli-dead-class-finder
 ==============================================================================
 
-This addon finds classes that do not appear in your tests and warns you that they should be addressed in some way. It generates a repot `./class-coverage/repot.json` which will look something like:
+This addon finds classes that do not appear in your tests and warns you that they should be addressed in some way. It generates a report `./class-coverage/report.json` which will look something like:
 
 ```json
 {
