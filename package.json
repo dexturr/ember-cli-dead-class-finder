@@ -1,13 +1,20 @@
 {
   "name": "ember-cli-dead-class-finder",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "homepage": "https://github.com/dexturr/ember-cli-dead-class-finder",
+  "bugs": {
+    "url": "https://github.com/dexturr/ember-cli-dead-class-finder/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dexturr/ember-cli-dead-class-finder.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Dexter Edwards",
   "directories": {
     "doc": "doc",
     "test": "tests"

@@ -9,7 +9,7 @@ const difference = require('lodash.difference');
 const some = require('lodash.some');
 const WRITE_COVERAGE = '/write-class-coverage';
 
-let list;
+let list = [];
 
 class ListSelectors extends Filter {
 
@@ -36,7 +36,7 @@ class ListSelectors extends Filter {
         { include: ['classes'] },
         (myList) => resolve(myList)
       )).then((myList) => {
-        list = myList.classes;
+        list.concat(myList.classes);
         return writeFile();
       });
     } else {
@@ -143,8 +143,12 @@ module.exports = {
     const stylesThatDoNotAppear = difference(list, flattenClasses);
     const filteredClassesWithNoStyles = classesWithNoStyles.filter(filterClasses);
     const filteredStylesThatDoNotAppear = stylesThatDoNotAppear.filter(filterClasses);
+    const basePath = path.join(this.project.root, 'class-coverage');
+    if (!fs.existsSync(basePath)) {
+      fs.mkdirSync(basePath);
+    }
     fs.writeFileSync(
-      path.join(this.project.root, 'class-coverage', 'report.json'),
+      path.join(basePath, 'report.json'),
       JSON.stringify({
         classesWithNoStyles: filteredClassesWithNoStyles,
         unusedStyledClasses: filteredStylesThatDoNotAppear,
