@@ -36,7 +36,7 @@ class ListSelectors extends Filter {
         { include: ['classes'] },
         (myList) => resolve(myList)
       )).then((myList) => {
-        list.concat(myList.classes);
+        list = list.concat(myList.classes);
         return writeFile();
       });
     } else {

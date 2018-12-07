@@ -1,3 +1,7 @@
+# v0.0.4
+
+Bugfix: Version 0.0.3 broke everything. Fix everything.
+
 # v0.0.3
 
 Update `package.json`
