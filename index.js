@@ -202,7 +202,6 @@ module.exports = {
       (req, res) => {
         try {
           classesFound = Object.assign(classesFound, req.body);
-          console.log(JSON.stringify(classesFound).length);
           this._processClasses(classesFound);
           res.send('Success');
         } catch(e) {
