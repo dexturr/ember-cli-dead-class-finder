@@ -169,7 +169,18 @@ module.exports = {
     if (!this._isEnabled()) {
       return;
     }
-    this._registerCustomMiddleware(app);
+    app.post(WRITE_COVERAGE,
+      bodyParser,
+      (req, res) => {
+        try {
+          const classesFound = req.body;
+          this._processClasses(classesFound);
+          res.send('Success');
+        } catch(e) {
+          res.send(`Failed: ${e}`);
+        }
+      },
+      logError);
   },
 
   testemMiddleware(app) {
@@ -179,15 +190,13 @@ module.exports = {
     if (!this._isEnabled()) {
       return;
     }
-    this._registerCustomMiddleware(app);
-  },
-
-  _registerCustomMiddleware(app) {
+    let classesFound = {};
     app.post(WRITE_COVERAGE,
       bodyParser,
       (req, res) => {
         try {
-          const classesFound = req.body;
+          classesFound = Object.assign(classesFound, req.body);
+          console.log(JSON.stringify(classesFound).length);
           this._processClasses(classesFound);
           res.send('Success');
         } catch(e) {
