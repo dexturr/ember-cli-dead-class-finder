@@ -183,6 +183,12 @@ module.exports = {
       logError);
   },
 
+  includedCommands() {
+    return {
+      'class-coverage-gate': require('./lib/class-coverage-gate'),
+    };
+  },
+
   testemMiddleware(app) {
     if (process.argv.includes('--server') || process.argv.includes('-s')) {
       return this.serverMiddleware({ app });
