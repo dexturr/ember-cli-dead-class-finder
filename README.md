@@ -1,6 +1,10 @@
 ember-cli-dead-class-finder
 ==============================================================================
 
+When refactoring/altering `hbs` files it is very easy to leave `css` that is no longer used or remove the css but leave the class. This addon generates a report that then details these classes. This can then gated as part of your CI to ensure that all new code is not leaving unused `css`, see gating below.
+
+**Note**: This is not `css` code coverage, just "class" coverage.
+
 This addon finds classes that do not appear in your tests and warns you that they should be addressed in some way. It generates a report `./class-coverage/report.json` which will look something like:
 
 ```json
@@ -45,7 +49,7 @@ Changing every single acceptance & integration test file is really annoying in t
 Usage
 ------------------------------------------------------------------------------
 
-Once you have added the `registerCssClasses` as above the coverage will only be generated when the `FIND_DEAD_CLASSES` enrvironment variable is set to true. The running either `FIND_DEAD_CLASSES=true ember s` or `FIND_DEAD_CLASSES=true ember test` will generate the coverage report in `./class-coverage/reort.json`.
+Once you have added the `registerCssClasses` as above the coverage will only be generated when the `FIND_DEAD_CLASSES` enrvironment variable is set to true. The running either `FIND_DEAD_CLASSES=true ember s` or `FIND_DEAD_CLASSES=true ember test` will generate the coverage report in `./class-coverage/report.json`.
 
 Ideally you should aim for this report to be empty, either by removing classes (in css/hbs files) or by adding tests to ensure that all your classes are rendered to the screen (and extra points for visual regression testing these). 
 
@@ -55,7 +59,7 @@ Ideally you should not have any classes that are not styled however it's not alw
 // ember-cli-build.js
 const app = new EmberApp(defaults, {
   'ember-cli-dead-class-finder': {
-  // You can specify the files you wish to process here to ignore any files you do not care about
+  // You can specify the css files you wish to process here
     filesToProcess: ['some-file.css'], 
   // RegEx patterns of classes to ignore
     ignore: [
@@ -67,6 +71,24 @@ const app = new EmberApp(defaults, {
   },
 }
 ```
+
+## ember-exam support?
+
+Yep.
+
+## ember-mocha support?
+
+Nope.
+
+## Gating
+
+This addon exposes a new command:
+
+```
+ember class-coverage-gate --ususedClasses=0 --stylelessClasses=0
+```
+
+these parameters both default to zero but can be customized to suit your use case. You can also pass the path to the report file in through `--reportPath`. This errors if the number of classes found is above the thresholds set.
 
 ## Create a passthrough when intercepting all ajax requests in tests
 
