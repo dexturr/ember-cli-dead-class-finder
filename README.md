@@ -85,10 +85,10 @@ Nope.
 This addon exposes a new command:
 
 ```
-ember class-coverage-gate --ususedClasses=0 --stylelessClasses=0
+ember class-coverage-gate --usused-classes=0 --styleless-classes=0
 ```
 
-these parameters both default to zero but can be customized to suit your use case. You can also pass the path to the report file in through `--reportPath`. This errors if the number of classes found is above the thresholds set.
+these parameters both default to zero but can be customized to suit your use case. You can also pass the path to the report file in through `--report-path`. This errors if the number of classes found is above the thresholds set. Use `--help` with the command for more details.
 
 ## Create a passthrough when intercepting all ajax requests in tests
 
